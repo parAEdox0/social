@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <title>new-post</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-zinc-900 font-poppins">
+
+    <div class="main  h-screen max-w-full overflow-hidden flex flex-col items-center justify-top text-white">
+
+        <div class="mainBody">
+
+            <div class="header">
+
+                <div class="h-[8.2vh] w-[100vw]relative flex justify-center items-center">
+                    <p class="absolute top-[2vh] left-4 ">
+
+                        <a href="/profile" class=" text-blue-500 ">
+                            <i class="fa-solid fa-arrow-left text-lg"></i> </a>
+                    </p>
+                    <h1 class="text-center text-[13px]  ">
+                        New post
+                    </h1>
+                </div>
+
+            </div>
+
+            <div class="mainBodyBody flex flex-col items-center p-6 gap-2">
+
+                <div class="flex flex-col items-center">
+                    <img src="https://t4.ftcdn.net/jpg/04/81/13/43/360_F_481134373_0W4kg2yKeBRHNEklk4F9UXtGHdub3tYk.jpg"
+                        class="rounded-full h-[15vh] w-[15vh] object-cover object-top">
+                    <label for="post_image" class="text-blue-500 text-center text-[11px] mt-2">Add a picture</label>
+                </div>
+
+                <form action="/post" method="post" enctype="multipart/form-data"
+                    class="block  justify-center items-center">
+                    <input type="file" name="post_image" id="post_image" class="hidden">
+                    <p>
+                        <label for="caption" class="text-[12px] font-normal text-zinc-500 ">Caption</label>
+                    </p>
+                    <textarea name="caption" id="caption"
+                        class="mt-2 bg-zinc-800 rounded p-1 text-white text-[11px] outline-none w-[90vw] h-[10vh] resize-none text-start"></textarea>
+
+                    <input type="submit" value="Post"
+                        class="hidden submit_image bg-blue-500 w-[90vw] text-[13px] px-3 py-2 rounded-md mt-3">
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class=" footer fixed h-[7vh] flex p-3 justify-between items-center w-screen  bottom-0">
+
+            <a href="/feed"><i class="fa-solid fa-house text-xl"></i></a>
+
+            <a href="/search"><i class="fa-solid fa-magnifying-glass text-xl"></i></a>
+
+            <a href="/post"><i class="fa-solid fa-square-plus text-2xl"></i></a>
+
+            <a href="/profile"><img src="../images/user-images/<%= user.profile %>"
+                    class="h-8 w-8 rounded-full object-cover object-top"></a>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelector("#post_image").addEventListener("input", () => {
+            document.querySelector(".submit_image").classList.remove("hidden");
+        })
+    </script>
+
+
+</body>
+
+</html>

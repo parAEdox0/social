@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <title>update-profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-zinc-900 font-poppins">
+
+    <div class="main  h-screen max-w-full overflow-hidden flex flex-col items-center justify-top text-white">
+
+        <div class="mainBody">
+
+            <div class="header">
+
+                <div class="h-[8.2vh] w-[100vw]relative flex justify-center items-center">
+                    <p class="absolute top-[2vh] left-4 ">
+
+                        <a href="/profile" class=" text-blue-500 ">
+                            <i class="fa-solid fa-arrow-left text-lg"></i> </a>
+                    </p>
+                    <h1 class="text-center text-[13px]  ">
+                        Edit profile
+                    </h1>
+                </div>
+
+            </div>
+
+            <div class="mainBodyBody flex flex-col items-center p-6 gap-2">
+
+                <div class="flex flex-col items-center">
+                    <div id="imagePreview">
+                        <img src="../images/user-images/<%= user.profile %>"
+                            class="rounded-full h-[15vh] w-[15vh] object-cover object-top">
+                    </div>
+                    <label for="profile_image" id="editPictureLabel"
+                        class="editPicture text-blue-500 text-center text-[11px] mt-2">
+                        Edit picture
+                    </label>
+                </div>
+
+                <form action="/editProfile" method="post" enctype="multipart/form-data"
+                    class="profile_form block justify-center items-center">
+                    <input type="file" name="profile_image" id="profile_image" class="hidden" value="">
+                    <input type="submit" value="Save profile"
+                        class="submitProfile bg-blue-500 w-[80vw] text-[13px] px-3 py-1 rounded-md mt-3 hidden">
+                </form>
+                <form action="/edit" method="post" class="flex flex-col">
+                    <p>
+                        <label for="username"
+                            class="username text-[12px] text-start w-[100%] font-normal text-zinc-600">Username</label>
+                    </p>
+                    <input type="text" name="username" id="username"
+                        class="bg-transparent text-white text-[15px] p-2 outline-none w-[80vw] border-b border-white"
+                        value="<%= user.username %>">
+                    <p>
+                        <label for="bio" class="text-[12px] font-normal text-zinc-600">Bio </label>
+                    </p>
+                    <textarea name="bio" id="bio"
+                        class="bg-transparent text-white text-[13px] outline-none w-[80vw] border-b border-white resize-none text-start"><%= user.bio %></textarea>
+
+                    <input type="submit" value="Save username/bio"
+                        class="bg-blue-500 text-[13px] w-[80vw] px-3 py-1 rounded-md mt-5">
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class=" footer fixed h-[7vh] flex p-3 justify-between items-center w-screen  bottom-0">
+
+            <a href="/feed"><i class="fa-solid fa-house text-xl"></i></a>
+
+            <a href="/search"><i class="fa-solid fa-magnifying-glass text-xl"></i></a>
+
+            <a href="/post"><i class="fa-solid fa-square-plus text-2xl"></i></a>
+
+            <a href="/profile"><img src="../images/user-images/<%= user.profile %>"
+                    class="h-8 w-8 rounded-full object-cover object-top"></a>
+
+        </div>
+
+    </div>
+
+    <script>
+        // document.querySelector(".editPicture").addEventListener("click", () => {
+        //     submitProfile.classList.remove("hidden");
+        // });
+        const inputProfile = document.querySelector("#profile_image");
+        const submitProfile = document.querySelector(".submitProfile");
+
+        inputProfile.addEventListener("input", () => {
+            submitProfile.classList.remove("hidden");
+        });
+
+
+    </script>
+
+</body>
+
+</html>

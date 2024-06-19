@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <title>
+        <%=otherUser.username%>'s story
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-zinc-900 text-white">
+    <div class="main">
+        <div class="header p-5">
+            <div class="border-t-2 pt-2 border-zinc-400 flex gap-2">
+                <div class="flex gap-5 items-center">
+                    <a href="/feed" class="ml-2 text-blue-500 ">
+                        <i class="fa-solid fa-arrow-left text-lg"></i> </a>
+                    <a href="/profile/<%=otherUser.username%>">
+                        <img src="../images/user-images/<%=otherUser.profile%>"
+                            class="h-[6vh] w-[6vh] rounded-full object-cover object-top">
+                </div>
+                <div class="flex flex-col gap-0">
+                    <p class="text-zinc-200 text-[13px] mt-1">
+                        <%= otherUser.username %>'s
+                    </p>
+                    </a>
+                    <p class="text-white font-semibold text-[7px] ">
+                        story highlight
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="mainMain h-[70vh] flex justify-center items-center p-5">
+            <img src="../images/user-images/<%= otherUser.profile %> "
+                class="h-[100vw] w-[100vw] object-cover object-top">
+        </div>
+    </div>
+</body>
+
+</html>

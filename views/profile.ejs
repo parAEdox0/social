@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Profile</title>
+</head>
+
+<body class="bg-zinc-900 font-poppins">
+    <div class="main relative min-h-screen max-w-full overflow-hidden text-white">
+
+        <div class="info p-[5px]">
+            <div class="h-[8.2vh] w-[100vw]  relative flex justify-between p-5 items-center">
+                <div class="flex gap-2">
+                    <p class="">
+                        <% if(query !="NULL" ) { %>
+                            <a href="/<%= query %>" class=" text-blue-500 ">
+                                <i class="fa-solid fa-arrow-left text-lg"></i> </a>
+                            <% } %>
+                    </p>
+                    <h1 class="text-[13px]  ">
+                        @ <%= user.username %>
+                    </h1>
+                </div>
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="py-3 flex items-start">
+
+                <div class="flex flex-col w-[45vw] gap-1">
+                    <img src="../images/user-images/<%= user.profile %>"
+                        class="w-[11vh] h-[11vh] rounded-[50%] object-cover object-top ml-3">
+                    <p class="text-[10px] ml-2 mt-1 text-zinc-300 font-light">
+                        <%= user.fullname %>
+                    </p>
+                    <p
+                        class="text-[9px] ml-2 mt-1 min-w-[50px] max-w-[80px] text-white font-normal bg-zinc-700 px-1 py-1 rounded-2xl">
+                        @ <%= user.username %>
+                    </p>
+                    <% if(user.bio) { %>
+                        <div class="bio ml-2 text-white text-[11px]">
+                            <p>
+                                <%= user.bio %>
+                            </p>
+                        </div>
+                        <% } %>
+
+                </div>
+
+                <div class="details flex w-[55vw] items-start gap-2">
+                    <div class="py-5">
+                        <p class="text-center">
+                            <%= posts.length %>
+                        </p>
+                        <p class="text-[11px] font-light text-center text-white">posts</p>
+                    </div>
+                    <div class="py-5">
+                        <p class="text-center">
+                            <a href="/followers">
+                                <%= user.followers.length %>
+                            </a>
+                        </p>
+                        <p class="text-[11px] font-light text-center text-white">followers</p>
+                    </div>
+                    <div class="py-5">
+                        <p class="text-center">
+                            <a href="/following">
+                                <%= user.following.length %>
+                            </a>
+                        </p>
+                        <p class="text-[11px] font-light text-center text-white">following</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="button p-[5px] mb-5">
+
+            <div class="flex gap-1 justify-evenly items-center">
+                <form action="/edit">
+                    <button class="bg-zinc-800 h-8 w-[48vw] rounded-md text-[11px]">
+                        Edit
+                        Profile
+                    </button>
+                </form>
+                <form action="/logout" method="post"><button
+                        class="bg-zinc-800 h-8 w-[48vw] rounded-md text-[11px]">Logout</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="posts">
+            <!-- <div class="text-center text-xl font-bold py-5 flex justify-center">POSTS</div> -->
+            <div class="images flex flex-wrap gap-1 ml-[2px]">
+                <% if(posts.length==0) { %>
+                    <p class="text-center text-[13px] w-full mt-5">No Posts Yet <a href="/post"
+                            class="text-blue-500 cursor-pointer">Create a
+                            new
+                            One!</a></p>
+                    <% } else { %>
+                        <% posts.reverse().forEach((post)=> { %>
+                            <a href="/<%=user.username%>/posts">
+                                <div class="image w-[32vw] h-[32.4vw] bg-zinc-500">
+                                    <img src="../images/user-images/<%= post.picture %>"
+                                        class="h-[100%] w-[100%] object-cover object-top">
+                                </div>
+                            </a>
+
+                            <% }) %>
+                                <% } %>
+            </div>
+
+            <% if(posts.length) { %>
+                <a href="/delete">
+                    <p class="text-sm text-[tomato] w-[100vw] text-center  mt-5">delete posts<i
+                            class="fa-solid fa-trash ml-2 text-[12px]"></i></p>
+                </a>
+                <% } %>
+
+                    <div class="filler h-[7vh] w-screen bg-zinc-900"></div>
+
+        </div>
+
+        <div class=" footer fixed h-[7vh] bg-zinc-900 flex p-3 justify-between items-center w-screen bottom-0">
+
+            <a href="/feed"><i class="fa-solid fa-house text-xl"></i></a>
+
+            <a href="/search"><i class="fa-solid fa-magnifying-glass text-xl"></i></a>
+
+            <a href="/post"><i class="fa-solid fa-square-plus text-2xl"></i></a>
+
+            <a href="/profile"><img src="../images/user-images/<%= user.profile %>"
+                    class="h-8 w-8 rounded-full object-cover object-top"></a>
+
+        </div>
+    </div>
+</body>
+
+</html>
